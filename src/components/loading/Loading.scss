@@ -1,0 +1,19 @@
+.loading {
+  width: 42px;
+  height: 42px;
+  border: 4px dashed rgb(0, 206, 209);
+  border-radius: 50%;
+  margin: 26px auto;
+  transform: translateX(-50%);
+  animation: infinite linear rotate-loading 1s;
+}
+
+@keyframes rotate-loading {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

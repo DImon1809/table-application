@@ -1,0 +1,39 @@
+.main {
+  --bg-color: rgba(128, 128, 128, 0.2);
+
+  &-table {
+    max-width: 1200px;
+    width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+
+    tr {
+      cursor: pointer;
+      height: 40px;
+
+      @media (hover: hover) {
+        &:not(.head-table-row):hover {
+          background-color: var(--bg-color);
+        }
+      }
+
+      &:not(.head-table-row):active {
+        background-color: var(--bg-color);
+      }
+    }
+
+    td {
+      border: 2px solid rgba(128, 128, 128, 0.5);
+      text-align: center;
+    }
+  }
+
+  .head-table {
+    height: 40px;
+  }
+
+  .empty-title {
+    width: 180px;
+    margin: 20px auto;
+  }
+}
