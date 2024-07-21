@@ -4,33 +4,7 @@ import Loading from "../loading/Loading";
 
 import "./UsersTable.scss";
 
-const UsersTable = ({
-  handleChangeIsAlert,
-  clearErrors,
-  error,
-  getUsers,
-  isLoading,
-  users,
-}) => {
-  const [data, setData] = useState([]);
-
-  const [sortData, setSortData] = useState([]);
-
-  useEffect(() => {
-    getUsers();
-  }, [getUsers]);
-
-  useEffect(() => {
-    setData(users);
-  }, [users]);
-
-  useEffect(() => {
-    if (error) {
-      handleChangeIsAlert(error);
-      clearErrors();
-    }
-  }, [error, clearErrors, handleChangeIsAlert]);
-
+const UsersTable = ({ isLoading, data, activeCell, openModuleWindow }) => {
   return (
     <main className="main">
       <table className="main-table">
@@ -49,13 +23,25 @@ const UsersTable = ({
           {!isLoading &&
             data.length > 0 &&
             data.map((user, index) => (
-              <tr key={index}>
+              <tr key={index} onClick={() => openModuleWindow(user.id)}>
                 <td>{index + 1}</td>
-                <td>{`${user.firstName} ${user.lastName}`}</td>
-                <td>{user.age}</td>
-                <td>{user.gender}</td>
-                <td>{user.phone}</td>
-                <td>{`${user.address.city} ${user.address.address}`}</td>
+                <td
+                  className={activeCell === "full-name" ? "active-cell" : ""}
+                >{`${user.firstName} ${user.lastName}`}</td>
+                <td className={activeCell === "age" ? "active-cell" : ""}>
+                  {user.age}
+                </td>
+                <td className={activeCell === "gender" ? "active-cell" : ""}>
+                  {user.gender}
+                </td>
+                <td className={activeCell === "phone" ? "active-cell" : ""}>
+                  {user.phone}
+                </td>
+                <td
+                  className={
+                    activeCell === "address" ? "active-cell-address" : ""
+                  }
+                >{`${user.address.city} ${user.address.address}`}</td>
               </tr>
             ))}
         </tbody>

@@ -5,7 +5,12 @@ import SortSection from "../sections-of-form/sort-section/SortSection";
 
 import "./TableMenu.scss";
 
-const TableMenu = ({ searchFetch, error, clearErrors }) => {
+const TableMenu = ({
+  handleSearchData,
+  error,
+  clearErrors,
+  handleSortData,
+}) => {
   const [isMoveMenu, setIsMoveMenu] = useState(false);
 
   useEffect(() => {
@@ -15,11 +20,11 @@ const TableMenu = ({ searchFetch, error, clearErrors }) => {
   return (
     <form className={isMoveMenu ? "table-menu move" : "table-menu"}>
       <SearchSection
-        searchFetch={searchFetch}
+        handleSearchData={handleSearchData}
         error={error}
         clearErrors={clearErrors}
       />
-      <SortSection />
+      <SortSection error={error} handleSortData={handleSortData} />
     </form>
   );
 };

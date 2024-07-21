@@ -1,0 +1,14 @@
+.input-info {
+  width: 100%;
+  border: none;
+  outline: 0;
+  background-color: transparent;
+  border-bottom: 2px solid rgb(0, 206, 209);
+  font-family: "Roboto", sans-serif;
+  padding: 5px 2px;
+  font-size: 14px;
+
+  &-wrapper {
+    width: 90%;
+  }
+}

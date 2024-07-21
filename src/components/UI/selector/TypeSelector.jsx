@@ -2,14 +2,14 @@ import React from "react";
 
 import "./TypeSelector.scss";
 
-const TypeSelector = ({ text, typeRef }) => {
+const TypeSelector = ({ text, fieldRef }) => {
   return (
     <div className="change-item-wrapper">
       <select
         name="change-item"
         id="change-item"
         className="change-item"
-        ref={typeRef}
+        ref={fieldRef}
       >
         <option value="default">Нет</option>
         <option value="full-name">ФИО</option>

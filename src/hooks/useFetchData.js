@@ -38,7 +38,7 @@ export const useFetchData = () => {
 
         if (key === "default") return getUsers();
 
-        if (!value) throw new Error("Заполните поля!");
+        if (!value) throw new Error("Заполните поле!");
 
         if (key === "full-name" || key === "address")
           value = upperFirstChar(value);
@@ -104,8 +104,8 @@ export const useFetchData = () => {
         setIsLoading(false);
 
         setError(
-          err.message === "Заполните поля!"
-            ? "Заполните поля!"
+          err.message === "Заполните поле!"
+            ? "Заполните поле!"
             : "Ошибка при получении данных!"
         );
 

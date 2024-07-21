@@ -5,16 +5,32 @@ import BlueButton from "../../UI/button/BlueButton";
 
 import "./SearchSection.scss";
 
-const SearchSection = ({ searchFetch, error, clearErrors }) => {
+const SearchSection = ({ handleSearchData, error, clearErrors }) => {
   const [searchValue, setSearchValue] = useState("");
   const searchFieldRef = useRef();
 
   const [isNoValid, setIsNoValid] = useState(false);
 
+  const [isSearch, setIsSearch] = useState(false);
+
   const handleSearch = (event) => {
     event.preventDefault();
 
-    searchFetch(searchFieldRef.current.value, searchValue.trim());
+    if (searchFieldRef.current.value === "default" && !isSearch) return;
+
+    setSearchValue("");
+
+    handleSearchData(searchFieldRef.current.value, searchValue.trim());
+
+    if (!isSearch) return setIsSearch(true);
+
+    return setIsSearch(false);
+  };
+
+  const returnToBack = (event) => {
+    searchFieldRef.current.value = "default";
+
+    handleSearch(event);
   };
 
   const handleChangeValue = (event) => {
@@ -24,11 +40,13 @@ const SearchSection = ({ searchFetch, error, clearErrors }) => {
   };
 
   useEffect(() => {
-    if (error === "Заполните поля!") setIsNoValid(true);
+    if (error === "Заполните поле!") setIsNoValid(true);
   }, [error]);
 
   return (
     <div className="search-section">
+      <TypeSelector text="Выбрать колонку поиска" fieldRef={searchFieldRef} />
+
       <div className="search-wrapper">
         <input
           type="text"
@@ -40,13 +58,15 @@ const SearchSection = ({ searchFetch, error, clearErrors }) => {
           onChange={handleChangeValue}
         />
         <label htmlFor="search-input" className="signature-search">
-          Искать
+          Введите текст поиска
         </label>
       </div>
 
-      <TypeSelector text="Выбрать поле поиска" typeRef={searchFieldRef} />
-
-      <BlueButton buttonText="искать" buttonFunction={handleSearch} />
+      {isSearch ? (
+        <BlueButton buttonText="отменить" buttonFunction={returnToBack} />
+      ) : (
+        <BlueButton buttonText="искать" buttonFunction={handleSearch} />
+      )}
     </div>
   );
 };

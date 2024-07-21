@@ -6,6 +6,7 @@
     width: 1200px;
     margin: 0 auto;
     border-collapse: collapse;
+    transition: all 1s ease;
 
     tr {
       cursor: pointer;
@@ -22,9 +23,25 @@
       }
     }
 
+    .head-table-row {
+      cursor: default;
+    }
+
     td {
       border: 2px solid rgba(128, 128, 128, 0.5);
       text-align: center;
+      min-width: 50px;
+      transition: all 0.3s ease;
+    }
+
+    .active-cell {
+      border: 4px solid rgba(128, 128, 128, 0.8);
+      width: 24%;
+
+      &-address {
+        border: 4px solid rgba(128, 128, 128, 0.8);
+        width: 36%;
+      }
     }
   }
 
