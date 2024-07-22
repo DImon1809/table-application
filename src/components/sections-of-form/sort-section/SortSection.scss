@@ -4,11 +4,23 @@
   justify-content: center;
   align-items: center;
   gap: 42px;
+
+  @media (max-width: 540px) {
+    gap: 28px;
+  }
 }
 
 .sort-wrapper {
   width: 300px;
   position: relative;
+
+  @media (max-width: 760px) {
+    width: 200px;
+  }
+
+  @media (max-width: 540px) {
+    width: 140px;
+  }
 
   .sort-by {
     width: 100%;

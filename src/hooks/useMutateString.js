@@ -1,5 +1,5 @@
-import React from "react";
-
+// Преобразует первую букву каждого слова в строке в прописную, для соответствия
+// требованиям запроса
 export const useMutateString = () => {
   const validateStr = (str) => {
     str = str.split("");

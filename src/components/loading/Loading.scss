@@ -6,6 +6,16 @@
   margin: 26px auto;
   transform: translateX(-50%);
   animation: infinite linear rotate-loading 1s;
+
+  @media (max-width: 760px) {
+    width: 32px;
+    height: 32px;
+  }
+
+  @media (max-width: 540px) {
+    width: 22px;
+    height: 22px;
+  }
 }
 
 @keyframes rotate-loading {

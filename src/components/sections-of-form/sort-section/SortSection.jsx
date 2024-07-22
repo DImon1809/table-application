@@ -5,7 +5,7 @@ import BlueButton from "../../UI/button/BlueButton";
 
 import "./SortSection.scss";
 
-const SortSection = ({ error, handleSortData }) => {
+const SortSection = ({ handleSortData }) => {
   const typeOfSort = useRef();
   const sortCellRef = useRef();
 
@@ -29,7 +29,11 @@ const SortSection = ({ error, handleSortData }) => {
           Выбрать колонку сортировки
         </label>
       </div>
-      <TypeSelector text="Выбрать поле сортировки" fieldRef={sortCellRef} />
+      <TypeSelector
+        text="Выбрать поле сортировки"
+        fieldRef={sortCellRef}
+        num={2}
+      />
 
       <BlueButton buttonText="Сортировать" buttonFunction={handlerSort} />
     </div>

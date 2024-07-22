@@ -31,6 +31,26 @@ export const useFetchData = () => {
     }
   }, []);
 
+  const promiseAllFetch = async (
+    values,
+    differentiation,
+    isAddress = false
+  ) => {
+    const request = values.map((value) =>
+      differentiation.map((dif) =>
+        fetch(
+          `https://dummyjson.com/users/filter?key=${
+            isAddress ? "address." + dif : dif
+          }&value=${value}`
+        ).then((res) => res.json())
+      )
+    );
+
+    const response = await Promise.all(request.flat(1));
+
+    return response.map((data) => data.users).flat(1);
+  };
+
   const searchFetch = useCallback(
     async (key, value) => {
       try {
@@ -46,22 +66,12 @@ export const useFetchData = () => {
         if (key === "full-name") {
           const names = ["firstName", "lastName"];
 
-          value = value.split(" ");
+          let values = value.split(" ");
 
-          const request = value.map((_value) =>
-            names.map((name) =>
-              fetch(
-                `https://dummyjson.com/users/filter?key=${name}&value=${_value}`
-              ).then((res) => res.json())
-            )
-          );
+          const _data = await promiseAllFetch(values, names);
 
-          const response = await Promise.all(request.flat(1));
-
-          let _data = response.map((data) => data.users).flat(1);
-
-          value.length >= 2
-            ? setUsers(findUniqueName(_data, value[0], value.at(-1)))
+          values.length >= 2
+            ? setUsers(findUniqueName(_data, values[0], values.at(-1)))
             : setUsers(_data);
         }
 
@@ -70,22 +80,12 @@ export const useFetchData = () => {
 
           let _temp = value.split(" ");
 
-          value = [_temp[0], _temp.slice(1, _temp.length).join(" ")];
+          let values = [_temp[0], _temp.slice(1, _temp.length).join(" ")];
 
-          const request = value.map((_value) =>
-            addresses.map((address) =>
-              fetch(
-                `https://dummyjson.com/users/filter?key=address.${address}&value=${_value}`
-              ).then((res) => res.json())
-            )
-          );
+          const _data = await promiseAllFetch(values, addresses, true);
 
-          const response = await Promise.all(request.flat(1));
-
-          let _data = response.map((data) => data.users).flat(1);
-
-          value?.[1]
-            ? setUsers(findUniqueAddress(_data, value[0], value.at(-1)))
+          values?.[1]
+            ? setUsers(findUniqueAddress(_data, values[0], values.at(-1)))
             : setUsers(_data);
         }
 
@@ -112,7 +112,7 @@ export const useFetchData = () => {
         console.error(err);
       }
     },
-    [findUniqueName, getUsers, upperFirstChar]
+    [findUniqueName, getUsers, upperFirstChar, findUniqueAddress]
   );
 
   const clearErrors = useCallback(() => setError(null), []);

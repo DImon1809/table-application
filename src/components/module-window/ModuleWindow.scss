@@ -14,4 +14,13 @@
   align-items: center;
   justify-content: center;
   gap: 20px;
+
+  @media (max-width: 760px) {
+    width: 360px;
+  }
+
+  @media (max-width: 640px) {
+    width: 300px;
+    height: 360px;
+  }
 }

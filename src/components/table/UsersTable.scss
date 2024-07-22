@@ -4,9 +4,13 @@
   &-table {
     max-width: 1200px;
     width: 1200px;
-    margin: 0 auto;
+    margin: 0 auto 80px;
     border-collapse: collapse;
     transition: all 1s ease;
+
+    @media (max-width: 1200px) {
+      width: 100%;
+    }
 
     tr {
       cursor: pointer;
@@ -32,6 +36,22 @@
       text-align: center;
       min-width: 50px;
       transition: all 0.3s ease;
+
+      @media (max-width: 840px) {
+        font-size: 14px;
+      }
+
+      @media (max-width: 640px) {
+        font-size: 12px;
+        overflow-x: scroll;
+        cursor: default;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .item-table {
+        overflow-x: auto;
+      }
     }
 
     .active-cell {
@@ -52,5 +72,15 @@
   .empty-title {
     width: 180px;
     margin: 20px auto;
+
+    h3 {
+      @media (max-width: 640px) {
+        font-size: 16px;
+      }
+
+      @media (max-width: 540px) {
+        font-size: 14px;
+      }
+    }
   }
 }

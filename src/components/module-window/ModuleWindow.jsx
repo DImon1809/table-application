@@ -21,12 +21,12 @@ const ModuleWindow = ({ dataModuleWindow, closeModuleWindow }) => {
     <div className="module-window">
       <LeaveButton leaveButtonFunction={closeModuleWindow} />
       {fields.map((field, index) => {
-        // console.log(dataModuleWindow.address[field.firstValue]);
         return (
           <InputInfo
             key={index}
             dataModuleWindow={dataModuleWindow}
             name={field.name}
+            index={index + 1}
             firstValue={
               field.name === "Адрес"
                 ? dataModuleWindow.address[field.firstValue]

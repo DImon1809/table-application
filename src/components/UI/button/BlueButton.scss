@@ -11,6 +11,20 @@
   animation: infinite linear dance-button 4s;
   transition: all 0.2s ease;
 
+  @media (max-width: 760px) {
+    width: 200px;
+    height: 36px;
+  }
+
+  @media (max-width: 640px) {
+    cursor: default;
+  }
+
+  @media (max-width: 540px) {
+    width: 140px;
+    height: 30px;
+  }
+
   &:active {
     opacity: 0.5;
     animation: none;
@@ -23,6 +37,14 @@
 
   p {
     font-size: 14px;
+
+    @media (max-width: 760px) {
+      font-size: 13px;
+    }
+
+    @media (max-width: 540px) {
+      font-size: 10px;
+    }
   }
 }
 

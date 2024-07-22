@@ -19,12 +19,8 @@ const TableMenu = ({
 
   return (
     <form className={isMoveMenu ? "table-menu move" : "table-menu"}>
-      <SearchSection
-        handleSearchData={handleSearchData}
-        error={error}
-        clearErrors={clearErrors}
-      />
-      <SortSection error={error} handleSortData={handleSortData} />
+      <SearchSection handleSearchData={handleSearchData} error={error} />
+      <SortSection handleSortData={handleSortData} />
     </form>
   );
 };

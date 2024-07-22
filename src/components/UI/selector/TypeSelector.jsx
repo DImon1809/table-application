@@ -2,12 +2,12 @@ import React from "react";
 
 import "./TypeSelector.scss";
 
-const TypeSelector = ({ text, fieldRef }) => {
+const TypeSelector = ({ text, fieldRef, num }) => {
   return (
     <div className="change-item-wrapper">
       <select
         name="change-item"
-        id="change-item"
+        id={`change-item-${num}`}
         className="change-item"
         ref={fieldRef}
       >
@@ -17,7 +17,7 @@ const TypeSelector = ({ text, fieldRef }) => {
         <option value="gender">Пол</option>
         <option value="address">Адрес</option>
       </select>
-      <label htmlFor="change-item" className="signature-select">
+      <label htmlFor={`change-item-${num}`} className="signature-select">
         {text}
       </label>
     </div>

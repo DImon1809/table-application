@@ -10,7 +10,7 @@ const UsersTable = ({ isLoading, data, activeCell, openModuleWindow }) => {
       <table className="main-table">
         <thead className="head-table">
           <tr className="head-table-row">
-            <td>Номер</td>
+            <td className="item-table">Номер</td>
             <td className="item-table">ФИО</td>
             <td className="item-table">Возраст</td>
             <td className="item-table">Пол</td>

@@ -5,7 +5,7 @@ import BlueButton from "../../UI/button/BlueButton";
 
 import "./SearchSection.scss";
 
-const SearchSection = ({ handleSearchData, error, clearErrors }) => {
+const SearchSection = ({ handleSearchData, error }) => {
   const [searchValue, setSearchValue] = useState("");
   const searchFieldRef = useRef();
 
@@ -45,7 +45,11 @@ const SearchSection = ({ handleSearchData, error, clearErrors }) => {
 
   return (
     <div className="search-section">
-      <TypeSelector text="Выбрать колонку поиска" fieldRef={searchFieldRef} />
+      <TypeSelector
+        text="Выбрать колонку поиска"
+        fieldRef={searchFieldRef}
+        num={1}
+      />
 
       <div className="search-wrapper">
         <input
@@ -54,6 +58,7 @@ const SearchSection = ({ handleSearchData, error, clearErrors }) => {
           id="search-input"
           className={isNoValid ? "search-input no-valid" : "search-input"}
           placeholder=" "
+          autoComplete="off"
           value={searchValue}
           onChange={handleChangeValue}
         />
